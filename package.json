@@ -1,0 +1,26 @@
+{
+  "name": "movieq",
+  "version": "1.0.0",
+  "description": "An application for searching & rating movies (OMDB API)",
+  "main": "app.js",
+  "scripts": {
+    "xxx": "nodemon app.js",
+    "zzz": "npm start --prefix client",
+    "frontendinstall": "npm install --prefix client",
+    "boom": "concurrently \"npm run xxx\" \"npm run zzz\""
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.1",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.5"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "nodemon": "^2.0.4"
+  }
+}
