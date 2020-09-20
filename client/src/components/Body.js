@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { MovieContext } from '../context/MovieContext'
 import Card from './Card'
 import Loading from './Loading'
+import MovieQLogo from "./MovieQ.png"
 
 const Body = () => {
     const movieContext = useContext(MovieContext)
@@ -9,6 +10,14 @@ const Body = () => {
 
     if(loading) {
         return <Loading />
+    }
+
+    if(movies.length == 0) {
+        return(
+            <div className="MovieQLogo">
+                <img src={MovieQLogo} alt="MovieLogo"/>
+            </div>
+        )
     }
     
     return (

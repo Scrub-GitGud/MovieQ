@@ -33,12 +33,6 @@ const ModalPlaylists = () => {
         }
     }
 
-    const onPlaylistSelect = (id) => {
-        LoadPlaylistItem(id)
-        M.Modal.init(document.getElementById('modal5')).open()
-    }
-
-
     return (
         <div>
             <div id="modal4" className="modal add-to-playlist-modal">
@@ -56,11 +50,11 @@ const ModalPlaylists = () => {
                         {playlists.length ? playlists.map(i => (
                             <div key={i._id} className="playlistsDiv">
                                 <div href="#modal5" className="modal-trigger modal-close" onClick={() => LoadPlaylistItem(i._id)} >
-                                    <li className="collection-item playlists" style={{"padding-right": "0"}}>
+                                    <li className="collection-item playlists" style={{"paddingRight": "0"}}>
                                         <h6>{i.title.substring(0, 20)} ({i.movieIDs.length} {i.title.length < 15 && "Items"})</h6>
                                     </li>
                                 </div>
-                                <a href="#!" onClick={(e) =>{ e.stopPropagation(); DeletePlaylist(i._id)} } className="secondary-content"><i className="material-icons">delete</i></a>
+                                <a href="#!" onClick={(e) =>{ DeletePlaylist(i._id)} } className="secondary-content"><i className="material-icons">delete</i></a>
                             </div>
                         )) : <li className="collection-item"> <h6>No Playlist Added</h6> </li>}
                         

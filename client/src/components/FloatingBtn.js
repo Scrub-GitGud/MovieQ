@@ -6,6 +6,13 @@ const FloatingBtn = () => {
 
     React.useEffect(() => {
         M.AutoInit();
+        document.addEventListener('DOMContentLoaded', function() {
+            var elems = document.querySelectorAll('.fixed-action-btn');
+            var instances = M.FloatingActionButton.init(elems, {
+              direction: 'left',
+              hoverEnabled: false
+            });
+        });
     })
 
     const authContext = useContext(AuthContext)
@@ -19,7 +26,7 @@ const FloatingBtn = () => {
     }
     
     return (
-        <div className="fixed-action-btn">
+        <div className="fixed-action-btn click-to-toggle">
             <a href="#!" className="btn-floating btn-large deep-purple">
                 <i className="large material-icons">settings</i>
             </a>

@@ -830,9 +830,17 @@ table th {
     width: 30vw;
     margin: 10vh auto;
 }
+.MovieQLogo {
+    width: 50vw;
+    margin: 10vh auto;
+}
 @media(max-width: 768px) {
     .LoadingSpinner{
         width: 50vw;
+    }
+    .MovieQLogo {
+        width: 70vw;
+        margin: 10vh auto;
     }
 }
 
