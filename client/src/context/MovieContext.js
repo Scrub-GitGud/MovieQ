@@ -26,7 +26,7 @@ const MovieContextProvider = (props) => {
         let i = 1
         let searched_data = null
         do{
-            searched_data = await axios.get(`http://www.omdbapi.com/?apikey=f3d5f186&s=${input_value}&page=${i}`, {
+            searched_data = await axios.get(`https://www.omdbapi.com/?apikey=f3d5f186&s=${input_value}&page=${i}`, {
                 cancelToken: source.token
             }).catch(function (thrown) {
                 if (axios.isCancel(thrown)) {
@@ -60,7 +60,7 @@ const MovieContextProvider = (props) => {
     const SetMovieDetailsID = async (imdbID) => {
         try {
             dispatch({type: "CLEAR_MOVIE_DETAILS"})
-            const searched_data = await axios.get(`http://www.omdbapi.com/?apikey=f3d5f186&i=${imdbID}`)
+            const searched_data = await axios.get(`https://www.omdbapi.com/?apikey=f3d5f186&i=${imdbID}`)
             
             // Getting Personal Rating
             const config = {
@@ -98,7 +98,7 @@ const MovieContextProvider = (props) => {
         }
         try {
             const res = await axios.post('api/rating', rateData, config)
-            const rated_movie = await axios.get(`http://www.omdbapi.com/?apikey=f3d5f186&i=${res.data.movieID}`)
+            const rated_movie = await axios.get(`https://www.omdbapi.com/?apikey=f3d5f186&i=${res.data.movieID}`)
             dispatch({type: "RATED_A_MOVIE", payload: rated_movie.data})
         } catch (err) {
             console.log(err);
@@ -135,7 +135,7 @@ const MovieContextProvider = (props) => {
 
             let PlaylistItems = []
             const X = res.data.movieIDs.map(async (i) => {
-                const movie = await axios.get(`http://www.omdbapi.com/?apikey=f3d5f186&i=${i}`)
+                const movie = await axios.get(`https://www.omdbapi.com/?apikey=f3d5f186&i=${i}`)
                 
                 
                 const rating_res = await axios.get(`api/rating/${movie.data.imdbID}`, config)
