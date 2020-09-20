@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import { MovieContext } from '../context/MovieContext'
 
@@ -9,6 +9,10 @@ const ModalPlaylists = () => {
 
     const movieContext = useContext(MovieContext)
     const { playlists, AddNewPlaylist, LoadPlaylistItem, DeletePlaylist } = movieContext
+
+    useEffect(() => {
+        // console.log(playlists);
+    }, [playlists])
 
     const onClick = () => {
         setCreateNewPlaylist(true)
@@ -29,6 +33,11 @@ const ModalPlaylists = () => {
         }
     }
 
+    const onPlaylistSelect = (id) => {
+        LoadPlaylistItem(id)
+        M.Modal.init(document.getElementById('modal5')).open()
+    }
+
 
     return (
         <div>
@@ -37,17 +46,27 @@ const ModalPlaylists = () => {
                     <ul className="collection with-header">
                         <li className='collection-header txt-center'><h5>All playlists</h5></li>
 
-                        {playlists.length ? playlists.map(i => (
-                            <div className="modal-trigger" href="#modal5" onClick={() => LoadPlaylistItem(i._id)} key={i._id} >
-                                <li className="playlistSelectDiv collection-item">
-                                    <h6>{i.title} ({i.movieIDs.length} Items)<a href="#!" onClick={(e) =>{e.stopPropagation(); DeletePlaylist(i._id)}} className="secondary-content"><i className="material-icons">delete</i></a></h6>
+                        {/* {playlists.length ? playlists.map(i => (
+                            <div href="#modal5" className="modal-trigger modal-close" onClick={() => LoadPlaylistItem(i._id)} key={i._id} >
+                                <li className="collection-item playlists">
+                                    <h6>{i.title} ({i.movieIDs.length} Items)<a href="#!" onClick={(e) =>{ e.stopPropagation(); DeletePlaylist(i._id)} } className="secondary-content"><i className="material-icons">delete</i></a></h6>
                                 </li>
+                            </div>
+                        )) : <li className="collection-item"> <h6>No Playlist Added</h6> </li>} */}
+                        {playlists.length ? playlists.map(i => (
+                            <div key={i._id} className="playlistsDiv">
+                                <div href="#modal5" className="modal-trigger modal-close" onClick={() => LoadPlaylistItem(i._id)} >
+                                    <li className="collection-item playlists" style={{"padding-right": "0"}}>
+                                        <h6>{i.title.substring(0, 20)} ({i.movieIDs.length} {i.title.length < 15 && "Items"})</h6>
+                                    </li>
+                                </div>
+                                <a href="#!" onClick={(e) =>{ e.stopPropagation(); DeletePlaylist(i._id)} } className="secondary-content"><i className="material-icons">delete</i></a>
                             </div>
                         )) : <li className="collection-item"> <h6>No Playlist Added</h6> </li>}
                         
                         {!createNewPlaylist && (
-                            <li onClick={onClick} className="collection-item playlistSelectDiv">
-                                <h6><i className="fas fa-plus" /> Create New Playlist</h6>
+                            <li onClick={onClick} className="collection-item playlists">
+                                <h6><i className="fas fa-plus" />  Create New Playlist</h6>
                             </li>
                         )}
                     </ul>

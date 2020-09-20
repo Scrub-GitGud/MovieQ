@@ -17,10 +17,11 @@ export default (state, action) => {
                 movieDetails: {},
             };
         case "RATED_A_MOVIE":
+            console.log(action.payload);
             return {
                 ...state,
                 loading: false,
-                success: "Rating Successfull"
+                success: `You've rated ${action.payload.Title}`
             };
         case "GET_ALL_PLAYLISTS":
             return {
@@ -32,6 +33,12 @@ export default (state, action) => {
             return {
                 ...state,
                 playlistMovies: action.payload,
+                loading: false
+            };
+        case "SET_CURRENT_PLAYLIST":
+            return {
+                ...state,
+                currentPlaylist: action.payload,
                 loading: false
             };
         case "CLEAR_PLAYLIST_ITEMS":
@@ -47,10 +54,18 @@ export default (state, action) => {
                 loading: false
             };
         case "ADD_ITEM_TO_PLAYLIST":
+            console.log(action.payload);
             return {
                 ...state,
                 playlists: state.playlists.map((i) => i._id === action.payload._id ? action.payload : i),
-                success: "Added item to playlist",
+                success: `Added item to ${action.payload.title}`,
+                loading: false
+            };
+        case "REMOVE_ITEM_FROM_PLAYLIST":
+            return {
+                ...state,
+                playlists: state.playlists.map((i) => i._id === action.payload._id ? action.payload : i),
+                success: `Removed item from ${action.payload.title}`,
                 loading: false
             };
         case "DELETE_PLAYLIST":

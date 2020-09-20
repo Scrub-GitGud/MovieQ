@@ -75,7 +75,7 @@ ROUT.post('/',
 // # Add item to Playlists
 ROUT.put('/:id', auth_middleware, async (req, res) => {
     try {
-        const foundPlaylist = await PlaylistModel.findById(req.params.id)
+        let foundPlaylist = await PlaylistModel.findById(req.params.id)
         if(!foundPlaylist) {
             return res.status(401).json({ msg: "playlist doesn't exist" })
         }
@@ -84,11 +84,34 @@ ROUT.put('/:id', auth_middleware, async (req, res) => {
             return res.status(401).json({msg: "Movie already in playlist"})
         }
 
-        const updatedPlaylist = await PlaylistModel.findByIdAndUpdate( {_id: req.params.id}, {$push: {movieIDs: req.body.movieID}} )
-        res.json(updatedPlaylist)
+        await PlaylistModel.findByIdAndUpdate( {_id: req.params.id}, {$push: {movieIDs: req.body.movieID}} )
+        foundPlaylist = await PlaylistModel.findById(req.params.id)
+        res.json(foundPlaylist)
     } catch (err) {
         console.log(err.msg);
         res.status(400).json({msg: "catch err | Adding item to playlist"})
+    }
+})
+// # PUT api/playlist/deleteItem/:id
+// # Private
+// # Delete item from Playlists
+ROUT.put('/deleteItem/:id', auth_middleware, async (req, res) => {
+    try {
+        let foundPlaylist = await PlaylistModel.findById(req.params.id)
+        if(!foundPlaylist) {
+            return res.status(401).json({ msg: "playlist doesn't exist" })
+        }
+        if(!foundPlaylist.movieIDs.includes(req.body.movieID)){
+            return res.status(401).json({msg: "Movie doesn't exist in the playlist"})
+        }
+
+        await PlaylistModel.findByIdAndUpdate(req.params.id, {$pull: {movieIDs: req.body.movieID}} )
+        foundPlaylist = await PlaylistModel.findById(req.params.id)
+        console.log(foundPlaylist, "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        res.json(foundPlaylist)
+    } catch (err) {
+        console.log(err.msg);
+        res.status(400).json({msg: "catch err | Deleting item from playlist"})
     }
 })
 // # DELETE api/playlist/:id

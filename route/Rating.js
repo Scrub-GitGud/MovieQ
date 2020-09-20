@@ -53,7 +53,8 @@ ROUT.post('/',
     try {
         const foundRating = await RatingModel.findOne({ $and: [{movieID: req.body.movieID}, {myOwnerID: req.user}]})
         if(foundRating) {
-            return res.status(400).json({ msg: "You already rated this movie" })
+            const updatedRating = await RatingModel.findByIdAndUpdate(foundRating._id, {rate: req.body.rate})
+            return res.json(updatedRating)
         }
 
         const ratingField = {
@@ -66,7 +67,6 @@ ROUT.post('/',
         const newRating = await new RatingModel(ratingField)
 
         newRating.save()
-
         res.json(newRating)
     } catch (err) {
         console.log(err);

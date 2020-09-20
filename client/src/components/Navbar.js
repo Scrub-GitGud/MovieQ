@@ -1,6 +1,6 @@
 import React, {useContext, useRef, useEffect} from 'react'
 import { MovieContext } from '../context/MovieContext'
-// import M from 'materialize-css/dist/js/materialize.min.js'
+import M from 'materialize-css/dist/js/materialize.min.js'
 
 const Navbar = () => {
 
@@ -12,17 +12,15 @@ const Navbar = () => {
     useEffect(() => {
         LoadPlaylist()
         
-        console.log(error);
-        if(error !== null) {
-            // M.toast({ html: error , classes: 'red' })
-            // setTimeout(() => ClearErrorAndSuccess(), 5000)
+        if(error != null) {
+            M.toast({ html: error , classes: 'red' })
+            ClearErrorAndSuccess()
         }
-        // if (success !== null) {
-        //     M.toast({ html: success, classes: 'limegreen' })
-        //     console.log(success);
-        //     setTimeout(() => ClearErrorAndSuccess(), 5000)
-        // }
-        //eslint-disable-next-line
+        if (success != null) {
+            M.toast({ html: success, classes: 'limegreen' })
+            ClearErrorAndSuccess()
+        }
+        // eslint-disable-next-line
     }, [success, error])
 
     const onChange = () => {

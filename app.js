@@ -6,9 +6,9 @@ ConnectDB()
 
 app.use(express.json({extended: false}))
 
-app.get("/", (req, res) => {
-    res.send("<h1>🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆</h1>")
-})
+// app.get("/", (req, res) => {
+//     res.send("<h1>🍆🍆🍆🍆🍆🍆🍆🍆🍆🍆</h1>")
+// })
 
 app.use('/api/reg', require('./Authentication/Register'))
 app.use('/api/login', require('./Authentication/Login'))
