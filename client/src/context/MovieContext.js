@@ -43,7 +43,7 @@ const MovieContextProvider = (props) => {
                 all_search = all_search.concat(searched_data.data.Search)
             }
             i++
-        }while(searched_data.data.Response !== "False" && i <= 2)
+        }while(searched_data.data.Response !== "False" && i <= 10)
         dispatch({type: "SEARCH_MOVIE", payload: all_search})
 
         // const x = await axios.get(`http://www.omdbapi.com/?apikey=f3d5f186&s=${input_value}`, {

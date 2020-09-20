@@ -41,7 +41,7 @@ const Navbar = () => {
             <div className="nav-wrapper #7c4dff deep-purple accent-2">
             <form onSubmit={onSubmit}>
                 <div className="input-field">
-                <input id="search" onChange={onChange} ref={input_text} type="search" placeholder="Search Movie" required autoComplete="off" />
+                <input id="search" ref={input_text} type="search" placeholder="Search Movie" required autoComplete="off" />
                 <label className="label-icon" htmlFor="search"><i className="material-icons">search</i></label>
                 <i onClick={onCross} className="material-icons">close</i>
                 </div>
