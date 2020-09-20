@@ -4,13 +4,18 @@
   "description": "An application for searching & rating movies (OMDB API)",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "xxx": "nodemon app.js",
     "zzz": "npm start --prefix client",
-    "frontendinstall": "npm install --prefix client",
-    "boom": "concurrently \"npm run xxx\" \"npm run zzz\""
+    "clientinstall": "npm install --prefix client",
+    "boom": "concurrently \"npm run xxx\" \"npm run zzz\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "",
   "license": "ISC",
+  "engines": {
+    "node": "12.16.3"
+  },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "config": "^3.3.1",
