@@ -20,7 +20,7 @@ const FloatingBtn = () => {
     }
     
     return (
-        <div className="fixed-action-btn click-to-toggle">
+        <div className="">
             {/* <a href="#!" className="btn-floating btn-large deep-purple">
                 <i className="large material-icons">settings</i>
             </a>
