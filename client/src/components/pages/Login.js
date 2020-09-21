@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom'
 import M from 'materialize-css/dist/js/materialize.min.js'
 import { AuthContext } from '../../context/AuthContext'
 import Loading from '../Loading'
+import MovieQLogo from "../MovieQ.png"
 
 const Login = (props) => {
 
@@ -37,6 +38,9 @@ const Login = (props) => {
     
     return (
         <div className="not-authorized-div">
+            <div className="MovieQLogo2" >
+                <img src={MovieQLogo} alt="MovieQLogo"/>
+            </div>
             <div className="formDiv">
                 <form onSubmit={onSubmit}>
                     <div className="input-field col s12">
