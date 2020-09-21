@@ -936,6 +936,9 @@ table th {
 .gradient-bg-1 { background-image: linear-gradient(to right bottom, mediumslateblue, darkslateblue);}
 .gradient-bg-2 { background-image: linear-gradient(to right bottom, lawngreen, limegreen);}
 .gradient-bg-3 { background-image: linear-gradient(to right bottom, tomato, Orangered);}
+.gradient-bg-1:hover { background-image: linear-gradient(to right bottom, darkslateblue, mediumslateblue );}
+.gradient-bg-2:hover { background-image: linear-gradient(to right bottom, limegreen, lawngreen );}
+.gradient-bg-3:hover { background-image: linear-gradient(to right bottom, Orangered, tomato);}
 
 .u-red { background-color: red; }
 .crimson { background-color: crimson; }
